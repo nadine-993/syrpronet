@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="28" viewBox="0 0 28 28">
+    <defs>
+        <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 48 48">
+            <image width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAABdElEQVRoge2YsU7DMBRFDwxlgb0wlB9BLMDXtFvhE2BAogNDxR+1S+ETEBJiLqVSU6lVGOwoJsQhDnEc0DvSU63c+OXeuElVgyAIddMBBsAUWOqaAH2ttZoj4AmILfWoz2kleyiDNvNJzWjpSgxITUbAEDjUdamPJXo/kMdCpqQGhzn6laFPGvRVmg9Sg90cvWvoiyYM3QArfv5O+64VcG0zuVNwfAHsu+f2whI4yBN2LRNi4B714IUmQnnJxbYCecQV57ngfA3bCvwZJEBoJECGO9R7+9ZRawTzx8XGWutrR83lGl+o+zVadM5v5+ciz0BoJEBoJEBoJEBoJEBoJEBoJECGKPNZVqtM3QFGqD2ckaNWGdlWCY1LgK0x9rG/b/bcWs/K4BLgzRifOMwry6kxfvXQnwfSP9zPwDn1rEQHuNA9k/7jGvp+4xh4x21rvErNgZ6PAKDuus8Qc+DMl/mEHmqJX4BNDaY3utcYj3deEP4rn4hExm+tmh+HAAAAAElFTkSuQmCC"/>
+        </pattern>
+    </defs>
+    <rect id="recycle" width="28" height="28" rx="4" fill="url(#pattern)"/>
+</svg>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770646353924",
+    "project_id": "syrpronet-app",
+    "storage_bucket": "syrpronet-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770646353924:android:8e06654266268690f02d51",
+        "android_client_info": {
+          "package_name": "com.example.syrpronet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770646353924-q6is44jirl0um12q244haigpq12j8kn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_H0IU3wZZMBmZHv1qXziou8YSBeqO5PA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770646353924-q6is44jirl0um12q244haigpq12j8kn2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

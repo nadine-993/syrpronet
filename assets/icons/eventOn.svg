@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="calendar" transform="translate(-124 -879)">
+    <path id="Path_32" data-name="Path 32" d="M62,922.59c-3.612-.436-5.091,2.46-6.331,4.608s-.81,2.74,1.37,3.985,4.079,1.557,7.348,1,6.326-.841,5.729-3.238S65.612,923.026,62,922.59Z" transform="translate(69.017 -41.448)" fill="rgba(50,63,75,0.35)"/>
+    <g id="calendar-2" data-name="calendar" transform="translate(124 879)">
+      <path id="Path_16" data-name="Path 16" d="M19,2H18V1a1,1,0,0,0-2,0V2H8V1A1,1,0,0,0,6,1V2H5A5.006,5.006,0,0,0,0,7V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7A5.006,5.006,0,0,0,19,2ZM2,7A3,3,0,0,1,5,4H19a3,3,0,0,1,3,3V8H2ZM19,22H5a3,3,0,0,1-3-3V10H22v9A3,3,0,0,1,19,22Z"/>
+      <circle id="Ellipse_8" data-name="Ellipse 8" cx="1.5" cy="1.5" r="1.5" transform="translate(10.5 13.5)"/>
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="1.5" cy="1.5" r="1.5" transform="translate(5.5 13.5)"/>
+      <circle id="Ellipse_10" data-name="Ellipse 10" cx="1.5" cy="1.5" r="1.5" transform="translate(15.5 13.5)"/>
+    </g>
+  </g>
+</svg>
