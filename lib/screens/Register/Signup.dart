@@ -1,15 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:syrpronet/model/providers/buttonProvider.dart';
 import 'package:syrpronet/screens/Register/step1.dart';
-import 'package:syrpronet/screens/Register/step2.dart';
-import '../../home.dart';
-import '../../model/providers/listProvider.dart';
+
 import '../../networking/constants.dart';
 import '../../widgets/textInfoCreateAccount.dart';
-import '../navigation.dart';
+import 'codeRegister.dart';
+
+// ... (other imports and code)
 
 class signup extends StatefulWidget {
   signup({Key? key}) : super(key: key);
@@ -19,23 +18,70 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
-
-  TextEditingController rePasswordController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
     double? height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    Future<void> createUserWithEmailAndPassword() async {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+
+        // Registration successful, navigate to the next screen or perform other actions.
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateAccountStep1()));
+      } catch (e) {
+        // Handle registration errors
+        if (e is FirebaseAuthException) {
+          if (e.code == 'email-already-in-use') {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Duplicate input'),
+                  content: const Text('The provided registration email is already in use.'),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+
+            // The email address is already in use. You can display an error message.
+          } else if (e.code == 'weak-password') {
+            // The password provided is too weak. You can display an error message.
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Password too week'),
+                  content: const Text('The provided password is too week , please insert minimum of 6 characters'),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+
+          }
+        }
+      }
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -46,7 +92,7 @@ class _signupState extends State<signup> {
             children: [
               const Center(
                 child: Text(
-                  'Register you syrpronet account here',
+                  'Register your syrpronet account here',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -58,11 +104,6 @@ class _signupState extends State<signup> {
               SizedBox(
                 height: height * .02,
               ),
-
-              SizedBox(
-                height: height * .02,
-              ),
-
               Expanded(
                 child: ListView(
                   children: [
@@ -83,7 +124,9 @@ class _signupState extends State<signup> {
                             hintText: 'Email',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.grey, width: 0.5),
+                                color: Colors.grey,
+                                width: 0.5,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -102,35 +145,22 @@ class _signupState extends State<signup> {
                         ),
                         TextFormField(
                           controller: passwordController,
-                          obscureText: Provider.of<ButtonProvider>(
-                              context,
-                              listen: false)
-                              .isHidden1,
                           keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
-                              icon: Provider.of<ButtonProvider>(context,
-                                  listen: false)
-                                  .isHidden1
-                                  ? const Icon(Icons.visibility_off,
-                                  color: kPrimaryColor)
-                                  : const Icon(
-                                Icons.visibility,
+                              icon: const Icon(
+                                Icons.visibility_off,
                                 color: kPrimaryColor,
                               ),
-                              onPressed: () {
-                                Provider.of<ButtonProvider>(context,
-                                    listen: false)
-                                    .isHidden1 =
-                                !Provider.of<ButtonProvider>(context,
-                                    listen: false)
-                                    .isHidden1;
-                              },
+                              onPressed: () {},
                             ),
                             hintText: 'Password',
                             enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Colors.grey, width: 0.5),
+                                color: Colors.grey,
+                                width: 0.5,
+                              ),
                             ),
                             focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(
@@ -152,8 +182,7 @@ class _signupState extends State<signup> {
                               height: height * .06,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateColor.resolveWith(
+                                  backgroundColor: MaterialStateColor.resolveWith(
                                           (states) => Colors.transparent),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
@@ -181,32 +210,22 @@ class _signupState extends State<signup> {
                               height: height * .06,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          kPrimaryColor),
-                                  padding:
-                                      MaterialStateProperty.all<EdgeInsets>(
-                                          const EdgeInsets.all(15)),
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.red),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
+                                  backgroundColor: MaterialStateProperty.all<Color>(
+                                    kPrimaryColor,
+                                  ),
+                                  padding: MaterialStateProperty.all<EdgeInsets>(
+                                    const EdgeInsets.all(15),
+                                  ),
+                                  foregroundColor: MaterialStateProperty.all<Color>(
+                                    Colors.red,
+                                  ),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                   ),
                                 ),
-                                onPressed: () {
-                                //  FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text)
-                                     // .then((value){
-                                        Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => CreateAccountStep1()));
-
-                                   // }).onError((error, stackTrace) {
-                                  //  print("Error ${error.toString()}");
-                                 // });
-                                },
+                                onPressed: createUserWithEmailAndPassword, // Call the registration function
                                 child: const Text(
                                   'Create >',
                                   style: TextStyle(

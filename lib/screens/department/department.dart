@@ -1,10 +1,13 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/providers/buttonProvider.dart';
 import '../../networking/constants.dart';
 import '../../widgets/departmentCard.dart';
 import '../../widgets/teamCard.dart';
+
 class DepartmentScreen extends StatefulWidget {
   const DepartmentScreen({Key? key}) : super(key: key);
 
@@ -21,52 +24,37 @@ class _DepartmentScreenState extends State<DepartmentScreen> {
     return Column(
       children: [
         Padding(
-padding: EdgeInsets.only(
-  left: width * 0.03,
-    top: height *0.03,
-  bottom: height * 0.02,
-),
-          child: Row(
-children:[
-GestureDetector(
-  child: Text(
-    "Departments",
-    style: provider.departmentsButton,
-  ),
-  onTap: (){
-    Provider.of<ButtonProvider>(context, listen: false)
-        .teamsButton = const TextStyle(color: Colors.grey);
-    Provider.of<ButtonProvider>(context, listen: false)
-        .departmentsButton =
-    const TextStyle(color: kSecondaryColor);
-    Provider.of<ButtonProvider>(context, listen: false)
-        .isDepartments = true;
-    },
-),
-  SizedBox(
-    width:width *0.1
-  ),
-  GestureDetector(
-    onTap: () {
-      Provider.of<ButtonProvider>(context, listen: false)
-          .departmentsButton = const TextStyle(color: Colors.grey);
-      Provider.of<ButtonProvider>(context, listen: false)
-          .teamsButton = const TextStyle(color: kSecondaryColor);
-      Provider.of<ButtonProvider>(context, listen: false)
-          .isDepartments = false;
-    },
-    child: Text(
-      'Teams',
-      style: provider.teamsButton,
-    ),
-  ),
-],
+          padding: EdgeInsets.only(
+            left: width * 0.03,
+            top: height * 0.03,
+            bottom: height * 0.02,
+          ),
+          child: const Row(
+
+
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    top: 0.025,
+                    left:  0.03),
+                child: Text(
+                  'Departments',
+                  style: TextStyle(
+                    fontFamily: kFontStyle,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+            ],
           ),
         ),
         Expanded(
           child: provider.isDepartments ? DepartmentCard() : const TeamsCard(),
         ),
-],
-          );
+      ],
+    );
   }
 }

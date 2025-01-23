@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../../model/providers/buttonProvider.dart';
 import '../../model/providers/informationProvider.dart';
 import '../../networking/constants.dart';
@@ -20,9 +19,7 @@ class _EventScreenState extends State<EventScreen> {
   bool isLoading = false;
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ButtonProvider>(context, listen: false).filter = 0.062;
-    });
+
 
     super.initState();
   }
@@ -114,30 +111,10 @@ class _EventScreenState extends State<EventScreen> {
                               ),
                             ),
                           ),
-                          IconButton(
-                              onPressed: () {
-                                if (Provider.of<ButtonProvider>(context,
-                                    listen: false)
-                                    .filter ==
-                                    0.062) {
-                                  Provider.of<ButtonProvider>(context,
-                                      listen: false)
-                                      .filter = 0.2;
-                                } else {
-                                  Provider.of<ButtonProvider>(context,
-                                      listen: false)
-                                      .filter = 0.062;
-                                }
-                              },
-                              icon: SvgPicture.asset(
-                                  'assets/icons/filter.svg'))
+
                         ],
                       ),
-                      Provider.of<ButtonProvider>(context, listen: false)
-                          .filter ==
-                          0.2
-                          ? const EventFiltter()
-                          : Container(),
+
                     ],
                   ),
                 ),

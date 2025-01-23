@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../networking/constants.dart';
 
-import '../screens/department/memberScreen.dart';
+import '../screens/members/memberScreen.dart';
 
 class TeamsCard extends StatelessWidget {
   const TeamsCard({Key? key}) : super(key: key);

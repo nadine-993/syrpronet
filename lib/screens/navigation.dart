@@ -1,23 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syrpronet/screens/home/home.dart';
 import 'package:syrpronet/screens/profile/profile.dart';
 import 'package:syrpronet/screens/project/project.dart';
 import 'package:syrpronet/screens/settings/settings.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:syrpronet/widgets/memberCard.dart';
 
 import '../networking/constants.dart';
+import '../widgets/globalCard.dart';
+import 'Global/global.dart';
 import 'department/department.dart';
 import 'event/event.dart';
+import 'members/memberScreen.dart';
 
-class navigation extends StatefulWidget {
-  const navigation({Key? key}) : super(key: key);
+class Navigation extends StatefulWidget {
+  final String uid;
+  String userId = FirebaseAuth.instance.currentUser!.uid;
+
+   Navigation({required this.uid, Key? key }) : super(key: key);
 
   @override
-  State<navigation> createState() => _navigationState();
+  State<Navigation> createState() => _NavigationState();
 }
 
-class _navigationState extends State<navigation>
+class _NavigationState extends State<Navigation>
     with SingleTickerProviderStateMixin {
+
   TabController? tabController;
   @override
   void initState() {
@@ -55,7 +64,7 @@ class _navigationState extends State<navigation>
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const Settings(),
+                    builder: (context) =>  Settings(uid: ''),
                   ),
                 );
               },
@@ -65,12 +74,13 @@ class _navigationState extends State<navigation>
         ),
         body: TabBarView(
           controller: tabController,
-          children: const <Widget>[
-            HomeScreen(),
-            EventScreen(),
-            ProjectScreen(),
-            DepartmentScreen(),
-            ProfileScreen(),
+          children:  <Widget>[
+            const ProjectScreen(),
+            const EventScreen(),
+            const DepartmentScreen(),
+            const GlobalScreen(),
+            ProfileScreen(uid: ''),
+
           ],
         ),
         bottomNavigationBar: Container(
@@ -101,21 +111,22 @@ class _navigationState extends State<navigation>
                       ),
                       tabs: <Widget>[
                         Tab(
-                          icon: SvgPicture.asset('assets/icons/homeOn.svg'),
-                          text: 'Home',
+                          icon: SvgPicture.asset('assets/icons/projectOn.svg'),
+                          text: 'Project',
                         ),
                         Tab(
                           icon: SvgPicture.asset('assets/icons/eventOn.svg'),
                           text: 'Events',
                         ),
-                        Tab(
-                          icon: SvgPicture.asset('assets/icons/projectOn.svg'),
-                          text: 'Project',
-                        ),
+
                         Tab(
                           icon:
                               SvgPicture.asset('assets/icons/departmentOn.svg'),
                           text: 'Departments',
+                        ),
+                        Tab(
+                          icon: SvgPicture.asset('assets/icons/location-grad.svg'),
+                          text: 'Global',
                         ),
                         Tab(
                           icon: SvgPicture.asset('assets/icons/user.svg'),

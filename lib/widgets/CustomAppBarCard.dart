@@ -36,11 +36,11 @@ class CustomAppBarCard extends StatelessWidget {
                 )),
           ),
           SizedBox(
-            width: width * 0.23,
+            width: width * 0.15,
           ),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               color: Colors.black87,
@@ -50,32 +50,7 @@ class CustomAppBarCard extends StatelessWidget {
           SizedBox(
             width: width * 0.23,
           ),
-          GestureDetector(
-            onTap: () {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  content: Share(),
-                ),
-              );
-            },
-            child: Container(
-                width: width * .10,
-                height: height * .045,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    'assets/icons/share.svg',
-                    width: width * 0.05,
-                  ),
-                )),
-          ),
+
         ],
       ),
     );

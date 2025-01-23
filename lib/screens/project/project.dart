@@ -19,9 +19,7 @@ class ProjectScreen extends StatefulWidget {
 class _ProjectScreenState extends State<ProjectScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ButtonProvider>(context, listen: false).filter = 0.062;
-    });
+
 
     super.initState();
   }
@@ -74,7 +72,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => createProject(),
+                  builder: (context) => createProject(uid: ''),
                 ),
               );
             }
@@ -116,30 +114,10 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  if (Provider.of<ButtonProvider>(context,
-                                      listen: false)
-                                      .filter ==
-                                      0.062) {
-                                    Provider.of<ButtonProvider>(context,
-                                        listen: false)
-                                        .filter = 0.2;
-                                  } else {
-                                    Provider.of<ButtonProvider>(context,
-                                        listen: false)
-                                        .filter = 0.062;
-                                  }
-                                },
-                                icon:
-                                SvgPicture.asset('assets/icons/filter.svg'))
+
                           ],
                         ),
-                        Provider.of<ButtonProvider>(context, listen: false)
-                            .filter ==
-                            0.2
-                            ? EventFiltter()
-                            : Container(),
+
                       ],
                     ),
                   ),

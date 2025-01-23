@@ -1,4 +1,3 @@
-// ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
 import 'package:syrpronet/networking/constants.dart';
@@ -55,6 +54,22 @@ class ButtonProvider with ChangeNotifier {
     _teamsButton = value;
     notifyListeners();
   }
+
+
+
+
+  TextStyle? _membersButton = const TextStyle(
+    color: Colors.grey,
+  );
+
+  TextStyle get membersButton  => _membersButton !;
+
+  set membersButton (TextStyle value) {
+    _membersButton  = value;
+    notifyListeners();
+  }
+
+
 
   bool? _isDepartmens = true;
   bool get isDepartments => _isDepartmens!;

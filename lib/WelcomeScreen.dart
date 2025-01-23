@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syrpronet/screens/Login/Login.dart';
 import 'package:syrpronet/screens/Register/Signup.dart';
+import 'package:syrpronet/screens/Register/codeRegister.dart';
 import 'package:syrpronet/screens/Register/step1.dart';
 
 
@@ -43,88 +44,81 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                   child: Center(
-                    child: SizedBox(
-                      height: height * 0.06,
-                      width: width * 0.8,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 200,
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStateProperty.all<Color>(Colors.white),
-                                    shape:
-                                    MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 200,
+                              child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                  MaterialStateProperty.all<Color>(Colors.white),
+                                  shape:
+                                  MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => signup(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: kFontStyle,
-                                        fontSize: 18),
                                   ),
                                 ),
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => LogIn(),
+                                    ),
+                                  );
+                                },
+                                child: const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: kFontStyle,
+                                      fontSize: 18),
+                                ),
                               ),
-                            ],
+                            ),
+                          ],
                     ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    child: ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all<Color>(Colors.white),
-                                        shape:
-                                        MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 200,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(Colors.white),
+                                      shape:
+                                      MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12),
                                         ),
                                       ),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => signup(),
-                                          ),
-                                        );
-                                      },
-                                      child: const Text(
-                                        "Register",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: kFontStyle,
-                                            fontSize: 18),
-                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => codeRegister(),
+                                        ),
+                                      );
+                                    },
+                                    child: const Text(
+                                      "Register",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: kFontStyle,
+                                          fontSize: 18),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
-
-                      ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                     ),
                   ),
               ],

@@ -389,6 +389,7 @@ class _createProjectState extends State<createProject> {
                                       userRef.set({
                                         'project name': projectName.text,
                                         'project sector': projectSector.text,
+                                        'timestamp': FieldValue.serverTimestamp(),
                                         'project phase': dropdownvalue,
                                         'project description': projectDescription.text,
                                         'syrpro support': supportvalue,

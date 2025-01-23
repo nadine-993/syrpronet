@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:syrpronet/Functions.dart';
-import '../../model/providers/informationProvider.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../Functions.dart';
 import '../../networking/constants.dart';
 import '../../widgets/CustomAppBarCard.dart';
 import '../../widgets/textWrapper.dart';
@@ -17,58 +17,31 @@ class EventDetails extends StatefulWidget {
 }
 
 class _EventDetailsState extends State<EventDetails> {
-
   @override
   Widget build(BuildContext context) {
     double? height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    // Fetch the image URL for the event from the Firestore document
+    String imageUrl = widget.doc['image'];
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: RefreshIndicator(
         color: kPrimaryColor,
         onRefresh: () async {
-          Provider.of<InformationProvider>(context, listen: false)
-              .internetAccess();
-          if (!Provider.of<InformationProvider>(context, listen: false)
-              .internetAccessB!) {
-            showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                    content: const Text(
-                      'Please check your internet access',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: kFontStyle),
-                    ),
-                    actions: <Widget>[
-                      Center(
-                        child: SizedBox(
-                          width: width * 0.6,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: kPrimaryColor,
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Ok')),
-                        ),
-                      )
-                    ]));
-          }
+          // Your refresh logic here
         },
         child: SafeArea(
           child: ListView(
             children: [
-
               const CustomAppBarCard(title: 'Event Details'),
               Stack(
                 children: [
                   Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/details.png'),
+                        image: NetworkImage(imageUrl), // Use the fetched image URL
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -135,14 +108,14 @@ class _EventDetailsState extends State<EventDetails> {
                                 ),
                               ),
                               title: Text(
-                                getDateStringFromTimestamp(widget.doc['Event Time']),
+                                widget.doc['Event Time'],
                                 style: const TextStyle(
                                     fontFamily: kFontStyle,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),
                               subtitle:  Text(
-                                getTimeStringFromTimestamp(widget.doc['Event Time']),
+                                widget.doc['Event Time'],
 
                                 style: const TextStyle(
                                     color: kGrayColor,
@@ -187,7 +160,7 @@ class _EventDetailsState extends State<EventDetails> {
                             Padding(
                               padding: EdgeInsets.only(left: width * 0.04),
                               child: const Text(
-                                'Event Details',
+                                'Attendees:',
                                 style: TextStyle(
                                   fontFamily: kFontStyleBold,
                                   fontSize: 20,
@@ -204,7 +177,7 @@ class _EventDetailsState extends State<EventDetails> {
                                 ),
                                 child:  TextWrapper(
                                   text:
-                                  widget.doc['Event Details'],
+                                  widget.doc['Attendees'],
                                 )),
                             SizedBox(
                               height: height * 0.02,
@@ -212,7 +185,7 @@ class _EventDetailsState extends State<EventDetails> {
                             Padding(
                               padding: EdgeInsets.only(left: width * 0.04),
                               child: const Text(
-                                'Speaker',
+                                'Host',
                                 style: TextStyle(
                                   fontFamily: kFontStyleBold,
                                   fontSize: 20,
@@ -222,14 +195,10 @@ class _EventDetailsState extends State<EventDetails> {
                             SizedBox(
                               height: height * 0.01,
                             ),
-                             ListTile(
-                              leading: const CircleAvatar(
-                                radius: 25,
-                                backgroundImage:
-                                AssetImage('assets/images/speaker.png'),
-                              ),
+                            ListTile(
+
                               title: Text(
-                                widget.doc['Event Speaker'],
+                                widget.doc['Event Host'],
                                 style:const  TextStyle(
                                     fontFamily: kFontStyle,
                                     fontSize: 20,
@@ -266,12 +235,11 @@ class _EventDetailsState extends State<EventDetails> {
                                   SizedBox(
                                     height: height * 0.01,
                                   ),
-                                  const Text('Zoom App'),
                                   SizedBox(
                                     height: height * 0.01,
                                   ),
-                                   Text(
-                                    widget.doc['Event Link'])
+                                  Text(
+                                      widget.doc['Event Link'])
                                 ],
                               ),
                             )
